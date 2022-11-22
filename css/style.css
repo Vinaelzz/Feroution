@@ -1,0 +1,15 @@
+.menu-bar {
+    background: linear-gradient(to right, rgba(10, 10, 10, 0.92),rgba(61, 61, 61, 0.297));
+}
+
+header {
+    color: #2b2847;
+    font-weight: bold;
+    font-family: "poppins";
+}
+
+header .a {
+    color: #11ebfa;
+    font-weight: bold;
+    font-family: "poppins s";
+}
