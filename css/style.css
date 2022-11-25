@@ -1,15 +1,71 @@
+/* navbar */
 .menu-bar {
-    background: linear-gradient(to right, rgba(10, 10, 10, 0.92),rgba(61, 61, 61, 0.297));
+    background: linear-gradient(to right, rgba(33, 31, 31, 0.92),rgba(61, 61, 61, 0.297));
 }
 
-header {
-    color: #2b2847;
-    font-weight: bold;
-    font-family: "poppins";
+.navbar-brand {
+    font-weight: 400;
+    font-family: "Playfair Display" sans-serif;
 }
 
-header .a {
-    color: #11ebfa;
-    font-weight: bold;
-    font-family: "poppins s";
+.navbar-nav{
+    font-weight: 400;
+    font-family: "poppins" sans-serif;
 }
+/* modal */
+.formscan{
+    width: 50px;
+}
+/* bodymid */
+
+#hero {
+    background: linear-gradient(to right, rgba(33, 31, 31, 0.92),rgba(61, 61, 61, 0.297));
+    height: 130vh;
+    width: 100%;
+}
+
+.hero-tag h1{
+    color: #fff;
+    font-weight: 700;
+    font-family: "poppins" sans-serif;
+    font-size: 45px;
+}
+
+.btn-secondary {
+    width: 230px;
+    height: 60px;
+}
+/* Search */
+
+#Search .h1{
+    font-family: "Poppins";
+}
+
+/* our team */
+
+#ourteam {
+    padding: 100px 0;
+}
+
+.card-team {
+    width: 100%;
+    height: 313px;
+    border-radius: 8px;
+    background-color: darkgray;
+    padding: 40px;
+    box-shadow: 0 0 7px 3px rgba(0, 0, 0, 0.5);
+}
+
+.circle-border {
+    width: 150px;
+    height: 150px;
+    background-color: #fff ;
+    border-radius: 50%;
+}
+
+.fotoprofile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
