@@ -1,4 +1,4 @@
-Thanks for downloading this template!
+Pembuatan website ini menggunakan template reveal dengan framework bootstrap
 
 Template Name: Reveal
 Template URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
