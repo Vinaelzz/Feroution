@@ -1,3 +1,16 @@
+<?php 
+require 'koneksi.php';
+
+$search = query("SELECT * FROM mytable");
+
+// search product
+if( isset($_POST["submit"])) {
+$search = submit($_POST["label"]);
+
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +66,7 @@
       <span class="navbar-toggler-icon "></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto  ">
+      <ul class="navbar-nav ms-auto">
         <li class="nav-item mx-2" >
           <a class="nav-link active text-dark " aria-current="page" href="#howtouse"><b>How To Use</b></a>
         </li>
@@ -123,7 +136,7 @@
               <h1 class="mt-5"><b>
                 Our services Featured </b>
               </h1>
-              <p class="mt-4">
+              <p class="mt-4" >
                 <b>Feroution</b> menggunakan teknologi berbasis Artificial Intelligence A.I untuk mendeteksi permasalahan yang ada pada wajah dan akan memberikan output berupa rekomendasi produk. 
               </p>
             </div>
@@ -184,6 +197,7 @@
     </div>
     <!-- ======= How to use ======= -->
     <section id="howtouse">
+
       <div class="container" data-aos="fade-up">
         <div class="section-header text-center">
           <h2>How To Use</h2>
@@ -231,51 +245,66 @@
           <h2>Find Your Product</h2>
           <p >Masukan keluhan pada kulit wajah, jenis kulit anda, umur, serta brand product yang anda inginkan.</p>
           <div class="row">
-            <div class="col-12 text-center mt-4 ">
-              <h1>
-                
-              </h1>
-            </div>
-          </div>
-      </div>
       <div class="col-10 mx-auto mt-2">
-        <div class="input-group mb-3">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="assets/img/iconform.svg"> Pilih Jenis Kulit
-          </button>
-          <ul class="dropdown-menu ">
-            <li><a class="dropdown-item" href="#">Normal</a></li>
-            <li><a class="dropdown-item" href="#">Berminyak</a></li>
-            <li><a class="dropdown-item" href="#">Kering</a></li>
-            <li><a class="dropdown-item" href="#">Mix</a></li>
-          </ul>
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <form action="" method="POST">
+        <div class="input-group mb-3" >  
+
+        
+          <!-- <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/img/iconform.svg"> Pilih Keluhan
           </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Kulit bopeng</a></li>
-            <li><a class="dropdown-item" href="#">Kulit berjerawat</a></li>
-            <li><a class="dropdown-item" href="#">Kulit ...</a></li>
+          <ul class="dropdown-menu" >
+            <li><a class="dropdown-item" href="#">normal-jerawat</a></li>
+            <li><a class="dropdown-item" href="#">normal-bopeng</a></li>
+            <li><a class="dropdown-item" href="#">normal-komedo</a></li>
           </ul>
           <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="assets/img/iconform.svg"> Brand Product (Optional)
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Separated link</a></li>
-          </ul>
-          <input type="text" placeholder="Masukan Umur" class="form-control" aria-label="Text input with dropdown button">
-          <button class="btn btn-outline-secondary" type="button">Search</button>
+          </ul> -->
+         
+          <input type="text" name="label" placeholder="masukan jenis kulit" class="form-control" aria-label="Text input with dropdown button">
+          <button class="btn btn-outline-secondary" type="submit" name="submit" id="btnsearch">Search</button>
         </div>   
-      </div>
-    </section><!-- End Clients Section -->
+        </form>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-10 mx-auto mt-2">
+     <table border="1" cellpadding="10" cellspacing="0">
+     <tr>
+          <td>Nama product</td>
+           <td>label</td>
+           <td>brand</td>
+           <td>gambar</td>
+           <td>linkproduct</td>
+        </tr>
 
-    
+        <?php foreach( $search as $row ) : ?>
+        <tr>
+          <td><?= $row["product_name"]; ?> </td>
+          <td><?= $row["label"]; ?> </td>
+          <td><?= $row["brand"]; ?> </td>
+ 
+           <td>
+            <a href="">linkproduct</a>
+           </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    </div>
+    </div>
+    </section>
 
+    <!-- End Search Section -->
     <!-- ======= Article ======= -->
+
     <section id="testimonials">
       <div class="container text-center" data-aos="fade-up">
         <div class="section-header">
@@ -406,8 +435,20 @@
           </div>
         </div>
       </div>
-    </section><!-- End Team Section -->
+    </section>
+    <!-- End Team Section -->
+    <script>
+      $(document).ready(function(){
 
+        ${'#btnsearch'}.click(function(){
+          ${'#tabel'}.show();
+        })
+
+      });
+
+
+      
+    </script>
 
 
   </main><!-- End #main -->
@@ -444,3 +485,5 @@
 </body>
 
 </html>
+
+
