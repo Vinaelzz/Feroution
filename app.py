@@ -1,13 +1,24 @@
 import mysql.connector
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+# from flask_mysqldb import MySQL,MySQLdb
 import joblib
 import numpy as np
 from tensorflow.keras.utils import load_img
 from tensorflow.keras.models import load_model
 from tensorflow.keras.utils import img_to_array
-    
+
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/img/photo/'
+
+# app.secret_key = "caircocoders-ednalan"
+         
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'db_feroution'
+# app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+# mysql = MySQL(app) 
+
+app.config['UPLOAD_FOLDER'] = 'static/img'
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -229,7 +240,34 @@ def main():
             masalah = "Bopeng"
 
         return render_template('predict.html', data=data, result=result, kulit=kulit, masalah=masalah)
+    
 
+# @app.route('/')
+# def index():
+#         # cursor = mysql.cursor(MySQLdb.cursors.DictCursor)
+#     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cur.execute("SELECT DISTINCT label FROM mytable ORDER BY label ASC")
+#     mytable = cur.fetchall()  
+#     return render_template('index.php', mytable = mytable)
+
+# @app.route("/fetchrecords",methods=["POST","GET"])
+# def fetchrecords():
+#     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#         # cursor = mysql.cursor(MySQLdb.cursors.DictCursor)
+#     if request.method == 'POST':
+#         query = request.form['query']
+#         #print(query)
+#         if query == '':
+#             cur.execute("SELECT * FROM mytable ORDER BY product_id DESC")
+#             employeelist = cur.fetchall()
+#             print('all list')
+#         else:
+#             search_text = request.form['query']
+#             print(search_text)
+#             cur.execute("SELECT * FROM mytable WHERE label IN (%s) ORDER BY product_id DESC", [search_text])
+#             employeelist = cur.fetchall()  
+#     return jsonify({'phpresponse': render_template('response.php', employeelist=employeelist)})
+        
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True)
