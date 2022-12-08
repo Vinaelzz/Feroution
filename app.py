@@ -244,16 +244,16 @@ def main():
 
 # @app.route('/')
 # def index():
-#         # cursor = mysql.cursor(MySQLdb.cursors.DictCursor)
-#     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#         # cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
+#     cur = mydb.connection.cursor(MySQLdb.cursors.DictCursor)
 #     cur.execute("SELECT DISTINCT label FROM mytable ORDER BY label ASC")
 #     mytable = cur.fetchall()  
 #     return render_template('index.php', mytable = mytable)
 
 # @app.route("/fetchrecords",methods=["POST","GET"])
 # def fetchrecords():
-#     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-#         # cursor = mysql.cursor(MySQLdb.cursors.DictCursor)
+#     cur = mydb.connection.cursor(MySQLdb.cursors.DictCursor)
+#         # cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
 #     if request.method == 'POST':
 #         query = request.form['query']
 #         #print(query)
