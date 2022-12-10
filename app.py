@@ -1,6 +1,6 @@
 import mysql.connector
 from flask import Flask, render_template, request, jsonify
-# from flask_mysqldb import MySQL,MySQLdb
+from flask_mysqldb import MySQL,MySQLdb
 import joblib
 import numpy as np
 from tensorflow.keras.utils import load_img
@@ -9,13 +9,13 @@ from tensorflow.keras.utils import img_to_array
 
 app = Flask(__name__)
 
-# app.secret_key = "caircocoders-ednalan"
+app.secret_key = "caircocoders-ednalan"
          
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = ''
-# app.config['MYSQL_DB'] = 'db_feroution'
-# app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'db_feroution'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # mysql = MySQL(app) 
 
 app.config['UPLOAD_FOLDER'] = 'static/img'
@@ -30,8 +30,13 @@ mydb = mysql.connector.connect(
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
+    
     if request.method == 'GET':
-        return render_template("index.php")
+        cursor = mydb.cursor()
+        cursor.execute("SELECT DISTINCT label FROM mytable ORDER BY label ASC")
+        mytable = cursor.fetchall()  
+        print(mytable)
+        return render_template('index.html', mytable=mytable)
 
     elif request.method == 'POST':
         model1 = load_model('ausion.h5', compile=False)
@@ -84,7 +89,7 @@ def main():
         if result == "normal-jerawat":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'normal-jerawat' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'normal-jerawat' ")
             data = cursor.fetchall()
             kulit = "Normal"
             masalah = "jerawat"
@@ -92,7 +97,7 @@ def main():
         elif result == "normal-poribesar":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'normal-poribesar' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'normal-poribesar' ")
             data = cursor.fetchall()
             kulit = "Normal"
             masalah = "Pori - pori besar"
@@ -100,7 +105,7 @@ def main():
         elif result == "normal-komedo":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'normal-komedo' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'normal-komedo' ")
             data = cursor.fetchall()
             kulit = "Normal"
             masalah = "Komedo"
@@ -108,7 +113,7 @@ def main():
         elif result == "normal-bopeng":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'normal-bopeng' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'normal-bopeng' ")
             data = cursor.fetchall()
             kulit = "Normal"
             masalah = "Bopeng"
@@ -116,7 +121,7 @@ def main():
         elif result == "berminyak-jerawat":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'berminyak-jerawat' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'berminyak-jerawat' ")
             data = cursor.fetchall()
             kulit = "Berminyak"
             masalah = "Jerawat"
@@ -124,7 +129,7 @@ def main():
         elif result == "berminyak-poribesar":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'berminyak-poribesar' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'berminyak-poribesar' ")
             data = cursor.fetchall()
             kulit = "Berminyak"
             masalah = "Pori - pori besar"
@@ -132,7 +137,7 @@ def main():
         elif result == "berminyak-komedo":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'berminyak-komedo' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'berminyak-komedo' ")
             data = cursor.fetchall()
             kulit = "Berminyak"
             masalah = "Komedo"
@@ -140,7 +145,7 @@ def main():
         elif result == "berminyak-bopeng":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'berminyak-bopeng' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'berminyak-bopeng' ")
             data = cursor.fetchall()
             kulit = "Berminyak"
             masalah = "Bopeng"
@@ -148,7 +153,7 @@ def main():
         elif result == "kering-jerawat":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kering-jerawat' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kering-jerawat' ")
             data = cursor.fetchall()
             kulit = "Kering"
             masalah = "Jerawat"
@@ -156,7 +161,7 @@ def main():
         elif result == "kering-poribesar":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kering-poribesar' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kering-poribesar' ")
             data = cursor.fetchall()
             kulit = "Kering"
             masalah = "Pori - pori besar"
@@ -164,7 +169,7 @@ def main():
         elif result == "kering-komedo":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kering-komedo' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kering-komedo' ")
             data = cursor.fetchall()
             kulit = "Kering"
             masalah = "Komedo"
@@ -172,7 +177,7 @@ def main():
         elif result == "kering-bopeng":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kering-bopeng' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kering-bopeng' ")
             data = cursor.fetchall()
             kulit = "Kering"
             masalah = "Bopeng"
@@ -180,7 +185,7 @@ def main():
         elif result == "kombinasi-jerawat":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kombinasi-jerawat' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kombinasi-jerawat' ")
             data = cursor.fetchall()
             kulit = "Kombinasi"
             masalah = "Jerawat"
@@ -188,7 +193,7 @@ def main():
         elif result == "kombinasi-poribesar":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kombinasi-poribesar' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kombinasi-poribesar' ")
             data = cursor.fetchall()
             kulit = "Kombinasi"
             masalah = "Pori - pori besar"
@@ -196,7 +201,7 @@ def main():
         elif result == "kombinasi-komedo":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kombinasi-komedo' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kombinasi-komedo' ")
             data = cursor.fetchall()
             kulit = "Kombinasi"
             masalah = "Komedo"
@@ -204,13 +209,13 @@ def main():
         elif result == "kombinasi-bopeng":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'kombinasi-bopeng' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'kombinasi-bopeng' ")
             data = cursor.fetchall()
 
         elif result == "sensitif-jerawat":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'sensitif-jerawat' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'sensitif-jerawat' ")
             data = cursor.fetchall()
             kulit = "Sensitif"
             masalah = "Jerawat"
@@ -218,7 +223,7 @@ def main():
         elif result == "sensitif-poribesar":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'sensitif-poribesar' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'sensitif-poribesar' ")
             data = cursor.fetchall()
             kulit = "Sensitif"
             masalah = "Pori - pori besar"
@@ -226,7 +231,7 @@ def main():
         elif result == "sensitif-komedo":
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'sensitif-komedo' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'sensitif-komedo' ")
             data = cursor.fetchall()
             kulit = "Sensitif"
             masalah = "Komedo"
@@ -234,40 +239,53 @@ def main():
         else:
             cursor = mydb.cursor()
             cursor.execute(
-                "SELECT product_name, brand, img_url, price, category FROM produkdb WHERE label = 'sensitif-bopeng' ")
+                "SELECT product_name, brand, img_url, price, category FROM mytable WHERE label = 'sensitif-bopeng' ")
             data = cursor.fetchall()
             kulit = "Sensitif"
             masalah = "Bopeng"
 
         return render_template('predict.html', data=data, result=result, kulit=kulit, masalah=masalah)
+
+    # def fetchrecords():
+    #     cursor = mydb.connection.cursor(MySQLdb.cursors.DictCursor)
+    #         # cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
+    #     if request.method == 'POST':
+    #         query = request.form['query']
+    #         #print(query)
+    #         if query == '':
+    #             cursor.execute("SELECT * FROM mytable ORDER BY product_id DESC")
+    #             employeelist = cursor.fetchall()
+    #             print('all list')
+    #         else:
+    #             search_text = request.form['query']
+    #             print(search_text)
+    #             cursor.execute("SELECT * FROM mytable WHERE label IN (%s) ORDER BY product_id DESC", [search_text])
+    #             employeelist = cursor.fetchall()  
+    #     return jsonify({'htmlresponse': render_template('response.html', employeelist=employeelist)})
     
 
-# @app.route('/')
-# def index():
-#         # cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
-#     cur = mydb.connection.cursor(MySQLdb.cursors.DictCursor)
-#     cur.execute("SELECT DISTINCT label FROM mytable ORDER BY label ASC")
-#     mytable = cur.fetchall()  
-#     return render_template('index.php', mytable = mytable)
 
-# @app.route("/fetchrecords",methods=["POST","GET"])
-# def fetchrecords():
-#     cur = mydb.connection.cursor(MySQLdb.cursors.DictCursor)
-#         # cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
-#     if request.method == 'POST':
-#         query = request.form['query']
-#         #print(query)
-#         if query == '':
-#             cur.execute("SELECT * FROM mytable ORDER BY product_id DESC")
-#             employeelist = cur.fetchall()
-#             print('all list')
-#         else:
-#             search_text = request.form['query']
-#             print(search_text)
-#             cur.execute("SELECT * FROM mytable WHERE label IN (%s) ORDER BY product_id DESC", [search_text])
-#             employeelist = cur.fetchall()  
-#     return jsonify({'phpresponse': render_template('response.php', employeelist=employeelist)})
+
+@app.route("/",methods=["POST","GET"])
+def fetchrecords():
+    cursor = mydb.connection.cursor(MySQLdb.cursors.DictCursor)
+        # cursor = mydb.cursor(MySQLdb.cursors.DictCursor)
+    if request.method == 'POST':
+        query = request.form['query']
+        #print(query)
+        if query == '':
+            cursor.execute("SELECT * FROM mytable ORDER BY product_id DESC")
+            employeelist = cursor.fetchall()
+            print('all list')
+        else:
+            search_text = request.form['query']
+            print(search_text)
+            cursor.execute("SELECT * FROM mytable WHERE label IN (%s) ORDER BY product_id DESC", [search_text])
+            employeelist = cursor.fetchall()  
+    return jsonify({'htmlresponse': render_template('response.html', employeelist=employeelist)})
         
+
+
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True)

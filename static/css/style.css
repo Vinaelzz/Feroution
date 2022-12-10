@@ -2,14 +2,14 @@
 * Template Name: Reveal - v4.9.1
 * Template URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
 * Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
+* License: https://bootstrapmade.com/license/ 
 */
 
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.92),rgba(83, 82, 82, 0.297));
+    background: linear-gradient(to right,  rgba(141, 161, 230, 0.92),rgba(238, 235, 235, 0.297));
     color: black;
     font-family: "Open Sans", sans-serif;
   }
@@ -83,7 +83,7 @@ body {
   --------------------------------------------------------------*/
   /* navbar */
   .menu-bar {
-    background: linear-gradient(to right, rgba(83, 82, 82, 0.297),rgba(255, 255, 255, 0.92));
+    background: linear-gradient(to right, rgba(22, 22, 22, 0.297),rgba(229, 222, 222, 0.92));
   }
   
   .navbar-brand {
@@ -215,7 +215,7 @@ body {
   
   /* product */
   #product{
-    height: 100vh;
+    height: 90vh;
   }
   /*--------------------------------------------------------------
   # Hero Section
@@ -398,7 +398,7 @@ body {
   #about {
     margin-top: 40px;
     padding: 10px 0 30px 0;
-    background: linear-gradient(to right, rgba(33, 31, 31, 0.92),rgba(61, 61, 61, 0.297));
+    background: linear-gradient(to right,  rgba(18, 18, 19, 0.92),rgba(228, 225, 225, 0.297));
   }
   
   #about .about-img {
@@ -568,6 +568,7 @@ body {
   
   #testimonials .testimonial-item .testimonial-img {
     width: 90px;
+    height: 90px;
     border-radius: 50%;
     border: 4px solid #fff;
     margin: 0 auto;
@@ -671,10 +672,10 @@ body {
   /* Our Team Section
   --------------------------------*/
   #team {
-    background: #fff;
+    background: linear-gradient(to right,  rgba(22, 22, 22, 0.297),rgba(229, 222, 222, 0.92));
     padding: 30px 0 0 0;
   }
-  
+/*   
   #team .member {
     text-align: center;
     margin-bottom: 20px;
@@ -706,8 +707,8 @@ body {
     font-style: italic;
     display: block;
     font-size: 13px;
-  }
-  
+  } */
+/*   
   #team .member .social {
     margin-top: 5px;
   }
@@ -719,7 +720,7 @@ body {
   #team .member .social i {
     font-size: 16px;
     margin: 0 2px;
-  }
+  } */
   
   
   /* dropdown */
@@ -734,7 +735,8 @@ body {
   # Footer
   --------------------------------------------------------------*/
   #footer {
-    background: #f2f5f8;
+    height: fit-content;
+    background: #a3c0de;
     padding: 0 0 30px 0;
     font-size: 14px;
   }
@@ -755,7 +757,8 @@ body {
   }
   
   #ourteam {
-    padding: 100px 0;
+    padding: 50px 0;
+  
   }
   
   .card-team {
