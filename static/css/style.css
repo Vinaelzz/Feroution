@@ -211,7 +211,10 @@ body {
     font-size: 25px;
   }
   
-  
+  .bold-font {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
   
   /* product */
   #product{
