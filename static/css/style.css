@@ -45,38 +45,6 @@ body {
     padding: 0;
   }
   
-  /*--------------------------------------------------------------
-  # Back to top button
-  --------------------------------------------------------------*/
-  /* .back-to-top {
-    position: fixed;
-    visibility: hidden;
-    opacity: 0;
-    right: 15px;
-    bottom: 15px;
-    z-index: 996;
-    background: #50d8af;
-    width: 40px;
-    height: 40px;
-    transition: all 0.4s;
-  }
-  
-  .back-to-top i {
-    font-size: 28px;
-    color: #fff;
-    line-height: 0;
-  }
-  
-  .back-to-top:hover {
-    background: #71dfbe;
-    color: #fff;
-  }
-  
-  .back-to-top.active {
-    visibility: visible;
-    opacity: 1;
-  }
-   */
   
   /*--------------------------------------------------------------
   # Header
@@ -217,6 +185,8 @@ body {
   }
   
   /* product */
+
+
   .back-home {
     margin-top: 50px;
   }
@@ -647,32 +617,7 @@ body {
     font-size: 55px;
   }
   
-  
-  /* animated */
-  /* #hero .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-  #hero .animated {
-    -webkit-animation: none;
-    animation: none;
-  }
-  @-webkit-keyframes up-down {
-    0% {
-      transform: translateY(10px);
-    }
-    100% {
-      transform: translateY(-10px);
-    }
-  }
-  
-  @keyframes up-down {
-    0% {
-      transform: translateY(10px);
-    }
-    100% {
-      transform: translateY(-10px);
-    }
-  } */
+ 
   
   
   /*--------------------------------------------------------------
@@ -946,50 +891,6 @@ body {
     background-color: #50d8af;
   }
   
-  /* Call To Action Section
-  --------------------------------*/
-  /* #call-to-action {
-    background: #081e5b;
-    background-size: cover;
-    padding: 40px 0;
-  }
-  
-  #call-to-action .cta-title {
-    color: #fff;
-    font-size: 28px;
-    font-weight: 700;
-  }
-  
-  #call-to-action .cta-text {
-    color: #fff;
-  }
-  
-  @media (min-width: 769px) {
-    #call-to-action .cta-btn-container {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-    }
-  }
-  
-  #call-to-action .cta-btn {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 8px 26px;
-    border-radius: 3px;
-    transition: 0.5s;
-    margin: 10px;
-    border: 3px solid #fff;
-    color: #fff;
-  }
-  
-  #call-to-action .cta-btn:hover {
-    background: #50d8af;
-    border: 3px solid #50d8af;
-  } */
   
   /* Our Team Section
   --------------------------------*/
@@ -997,53 +898,7 @@ body {
     background: linear-gradient(to right,  rgba(166, 185, 234, 0.297),rgba(255, 255, 255, 0.92));
     padding: 30px 0 0 0;
   }
-/*   
-  #team .member {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  #team .member .pic {
-    overflow: hidden;
-    text-align: center;
-  }
-  
-  #team .member .pic img {
-    max-width: 100%;
-  }
-  
-  #team .member .details {
-    background: #50d8af;
-    color: #fff;
-    padding: 15px;
-    border-radius: 0 0 3px 3px;
-  }
-  
-  #team .member h4 {
-    font-weight: 700;
-    margin-bottom: 2px;
-    font-size: 18px;
-  }
-  
-  #team .member span {
-    font-style: italic;
-    display: block;
-    font-size: 13px;
-  } */
-/*   
-  #team .member .social {
-    margin-top: 5px;
-  }
-  
-  #team .member .social a {
-    color: #fff;
-  }
-  
-  #team .member .social i {
-    font-size: 16px;
-    margin: 0 2px;
-  } */
-  
+
   
   /* dropdown */
   .input-group{
