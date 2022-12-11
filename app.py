@@ -1,16 +1,15 @@
 import mysql.connector
 from flask import Flask, render_template, request, jsonify
-from flask_mysqldb import MySQL,MySQLdb
+from flask_mysqldb import MySQLdb
 import joblib
 import numpy as np
-from tensorflow.keras.utils import load_img
-from tensorflow.keras.models import load_model
-from tensorflow.keras.utils import img_to_array
+import torch
+import cv2
 
 app = Flask(__name__)
 
 app.secret_key = "caircocoders-ednalan"
-         
+
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
@@ -39,7 +38,7 @@ def main():
         return render_template('index.html', mytable=mytable)
 
     elif request.method == 'POST':
-        model1 = load_model('ausion.h5', compile=False)
+        model1 = torch.hub.load("yolo", 'custom', path="best.pt", source='local')
         model2 = joblib.load("stacking-model.pkl")
 
         a = request.form.get('optradio')
@@ -51,13 +50,11 @@ def main():
         img = request.files['photo']
         img_path = app.config['UPLOAD_FOLDER']+img.filename
         img.save(img_path)
-        image = load_img(img_path, target_size=(224, 224))
-        x = img_to_array(image)
-        x = np.expand_dims(x, axis=0)
 
-        images = np.vstack([x])
-        classes = model1.predict(images, batch_size=10)
-        classes = np.argmax(classes, axis=1)
+        img = cv2.imread(img_path)
+        results = model1(img)
+        classes = np.array(results.pandas().xyxy[0])
+        classes = classes[0][5]
         if classes == 0:
             classes = 2
         elif classes == 1:
