@@ -8,13 +8,13 @@ import cv2
 
 app = Flask(__name__)
 
-app.secret_key = "caircocoders-ednalan"
+# app.secret_key = "caircocoders-ednalan"
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'db_feroution'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'db_feroution'
+# app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # mysql = MySQL(app) 
 
 app.config['UPLOAD_FOLDER'] = 'static/img'
